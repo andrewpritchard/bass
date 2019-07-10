@@ -1,0 +1,20 @@
+{
+  "sass_default": {
+    "src": "./default.scss",
+    "options": {
+      "outputStyle": "nested",
+      "precision": 5,
+      "sourceComments": false
+    },
+    "dest": "./css"
+  },
+  "sass_alt": {
+    "src": "./default.scss",
+    "options": {
+      "outputStyle": "nested",
+      "precision": 5,
+      "sourceComments": false
+    },
+    "dest": "./css"
+  }
+}

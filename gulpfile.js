@@ -1,50 +1,65 @@
-// [https://nodejs.org/api/modules.html#modules_require_id]
-const package = require('./package.json');
+// [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode]
+'use strict';
 
-// [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys]
-let dependencies = Object.keys(package.devDependencies);
+const gulp = require('gulp');
+const { series } = require('gulp');
+// [https://github.com/jackfranklin/gulp-load-plugins#usage]
+const plugins = require('gulp-load-plugins')();
+// [https://github.com/dlmanning/gulp-sass#basic-usage]
+plugins.sass.compiler = require('node-sass');
 
-// [https://coderwall.com/p/kvzbpa/don-t-use-array-foreach-use-for-instead]
-for (i = 0,
-    len = dependencies.length;
-i < len;
-i++) {
-    if(dependencies[i] != 'node-sass') {
-        // [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Using_an_inline_function_that_modifies_the_matched_characters]
-        eval(dependencies[i].replace(/gulp-/g, '') + ' = require(\'' + dependencies[i] + '\')');
+let sassTasks = require('./bass/sass.json');
+
+//https://stackoverflow.com/questions/29885220/using-objects-in-for-of-loops/#29885220
+for (const key in sassTasks) {
+    sassTasks[key] = function() {
+        return gulp.src('./default.scss')
+            .pipe(plugins.sass({
+                // [https://github.com/sass/node-sass#outputstyle]
+                outputStyle: '\' + sassTasks[key].options.outputStyle + \'',
+                precision: '\' + sassTasks[key].options.precision + \'',
+                sourceComments: '\' + sassTasks[key].options.sourceComments + \''
+            }).on('error', plugins.sass.logError))
+            .pipe(gulp.dest('./css'));
     };
 };
 
-//
-const { series } = require('gulp');
+let autoprefixerTasks = require('./bass/autoprefixer.json');
 
-//
-sass.compiler = require('node-sass');
-
-//
-const sassConfiguration = {
-  "task": "sass_default",
-  "src": "./default.scss",
-  "options": {
-    "outputStyle": "nested",
-    "precision": 5,
-    "sourceComments": false
-  },
-  "dest": "./css"
+//https://stackoverflow.com/questions/29885220/using-objects-in-for-of-loops/#29885220
+for (const key in autoprefixerTasks) {
+    autoprefixerTasks[key] = function() {
+        return gulp.src('./css/default.css')
+            .pipe(plugins.autoprefixer({
+                // [https://github.com/postcss/autoprefixer#options]
+                env: '\' + autoprefixerTasks[key].options.env + \'',
+                cascade: '\' + autoprefixerTasks[key].options.cascade + \'',
+                remove: '\' + autoprefixerTasks[key].options.remove + \'',
+                supports: '\' + autoprefixerTasks[key].options.supports + \'',
+                flexbox: '\' + autoprefixerTasks[key].options.flexbox + \'',
+                grid: '\' + autoprefixerTasks[key].options.grid + \'',
+                //stats: '\' + autoprefixerTasks[key].options.stats + \'',
+                //browsers: '\' + autoprefixerTasks[key].options.browsers + \'',
+                ignoreUnknownVersions: '\' + autoprefixerTasks[key].options.ignoreUnknownVersions + \''
+            }))
+            .pipe(gulp.dest('./css'));
+    };
 };
 
-// [https://stackoverflow.com/questions/5905492/dynamic-function-name-in-javascript/#answer-5905508] [https://stackoverflow.com/questions/805107/creating-multiline-strings-in-javascript/#answer-6247331]
-eval(sassConfiguration.task + ' = function(cb) {' +
-    'return gulp.src(\'' + sassConfiguration.src + '\')' +
-        '.pipe(sass({' +
-            // [https://github.com/sass/node-sass#outputstyle]
-            'outputStyle: \'' + sassConfiguration.options.outputStyle + '\',' +
-            'precision: ' + sassConfiguration.options.precision + ',' +
-            'sourceComments: ' + sassConfiguration.options.sourceComments +
-        '}).on(\'error\', sass.logError))' +
-        '.pipe(gulp.dest(\'' + sassConfiguration.dest + '\'));' +
-    'cb();' +
-'};');
+let cssoTasks = require('./bass/csso.json');
 
-//
-exports.default = sass_default;
+//https://stackoverflow.com/questions/29885220/using-objects-in-for-of-loops/#29885220
+for (const key in cssoTasks) {
+    cssoTasks[key] = function() {
+        return gulp.src('./css/default.css')
+            .pipe(plugins.csso({
+                // [https://github.com/css/csso#usage-data]
+                restructure: '\' + cssoTasks[key].options.restructure + \'',
+                debug: '\' + cssoTasks[key].options.debug + \'',
+                usage: '\' + cssoTasks[key].options.usage + \''
+            }))
+            .pipe(gulp.dest('./css'));
+    };
+};
+
+exports.default = series(sassTasks.sass_default, autoprefixerTasks.autoprefixer_default, cssoTasks.csso_default);

@@ -1,0 +1,32 @@
+{
+  "autoprefixer_default": {
+    "src": "./default.css",
+    "options": {
+      "env": "",
+      "cascade": true,
+      "remove": true,
+      "supports": true,
+      "flexbox": true,
+      "grid": false,
+      "stats": true,
+      "browsers": "['last 2 versions']",
+      "ignoreUnknownVersions": false
+    },
+    "dest": "./css"
+  },
+  "autoprefixer_alt": {
+    "src": "./default.css",
+    "options": {
+      "env": "",
+      "cascade": true,
+      "remove": true,
+      "supports": true,
+      "flexbox": true,
+      "grid": false,
+      "stats": true,
+      "browsers": "['last 2 versions']",
+      "ignoreUnknownVersions": false
+    },
+    "dest": "./css"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "csso_default": {
+    "src": "./css/default.css",
+    "options": {
+      "restructure": true,
+      "debug": false,
+      "usage": null
+    },
+    "dest": "./css"
+  },
+  "csso_alt": {
+    "src": "./css/default.css",
+    "options": {
+      "restructure": true,
+      "debug": false,
+      "usage": null
+    },
+    "dest": "./css"
+  }
+}
