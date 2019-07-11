@@ -4,7 +4,7 @@
     "options": {
       "restructure": true,
       "debug": false,
-      "usage": null
+      "usage": ""
     },
     "dest": "./css"
   },
@@ -13,7 +13,7 @@
     "options": {
       "restructure": true,
       "debug": false,
-      "usage": null
+      "usage": ""
     },
     "dest": "./css"
   }
