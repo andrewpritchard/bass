@@ -7,6 +7,7 @@ const { series } = require('gulp');
 const plugins = require('gulp-load-plugins')();
 // [https://github.com/dlmanning/gulp-sass#basic-usage]
 plugins.sass.compiler = require('node-sass');
+plugins.notifier = require('node-notifier');
 
 // [https://nodejs.org/api/modules.html#modules_require_id]
 let dependencies = require('./package.json');
@@ -16,9 +17,8 @@ dependencies = Object.keys(dependencies.devDependencies);
 let noTasks = [
     'gulp',
     'gulp-load-plugins',
-    'gulp-notify',
-    'gulp-ssh',
-    'node-sass'
+    'node-sass',
+    'node-notifier'
 ];
 const bass = {};
 
@@ -32,4 +32,19 @@ for (const key in dependencies) {
     };
 };
 
-exports.default = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default);
+exports.default = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, function() {
+    plugins.notifier.notify({
+        title: 'Build',
+        message: 'Done'
+    });
+});
+
+exports.test = bass.sshTasks.ssh_test;
+exports.watch = function() {
+    watch('./*.scss', series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, , function() {
+        plugins.notifier.notify({
+            title: 'Upload',
+            message: 'Done'
+        });
+    }));
+};

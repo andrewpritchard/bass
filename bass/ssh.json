@@ -1,0 +1,38 @@
+{
+  "ssh_test": {
+    "connection": {
+      "host": "localhost",
+      "port": 22,
+      "username": "",
+      "privateKey": "",
+      "privateKeyFile": "",
+      "useAgent": false,
+      "passphrase": ""
+    },
+    "command": "read",
+    "src": "/opt/git/kingfisherpainting/license.txt",
+    "options": {
+      "filePath": "license.txt",
+      "autoExit": true
+    },
+    "dest": "./"
+  },
+  "ssh_default": {
+    "connection": {
+      "host": "localhost",
+      "port": 22,
+      "username": "",
+      "privateKey": "",
+      "privateKeyFile": "",
+      "useAgent": false,
+      "passphrase": ""
+    },
+    "command": "write",
+    "src": "./css/default.css",
+    "options": {
+      "filePath": "gulp-ssh.shell.log",
+      "autoExit": true
+    },
+    "dest": "/opt/git/kingfisherpainting/default.css"
+  }
+}
