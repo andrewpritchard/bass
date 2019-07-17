@@ -28,11 +28,11 @@
       "passphrase": ""
     },
     "command": "write",
-    "src": "./css/default.css",
+    "src": "./wp-content/themes/Zephyr-child/style.css",
     "options": {
-      "filePath": "gulp-ssh.shell.log",
+      "filePath": "style.css",
       "autoExit": true
     },
-    "dest": "/opt/git/kingfisherpainting/default.css"
+    "dest": "/opt/git/kingfisherpainting/wp-content/themes/Zephyr-child/style.css"
   }
 }

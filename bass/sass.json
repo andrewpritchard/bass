@@ -1,20 +1,20 @@
 {
   "sass_default": {
-    "src": "./default.scss",
+    "src": "./wp-content/themes/Zephyr-child/scss/*.scss",
     "options": {
       "outputStyle": "nested",
       "precision": 5,
       "sourceComments": false
     },
-    "dest": "./css"
+    "dest": "./wp-content/themes/Zephyr-child/"
   },
   "sass_alt": {
-    "src": "./default.scss",
+    "src": "./wp-content/themes/Zephyr-child/scss/style.scss",
     "options": {
       "outputStyle": "nested",
       "precision": 5,
       "sourceComments": false
     },
-    "dest": "./css"
+    "dest": "./wp-content/themes/Zephyr-child/"
   }
 }

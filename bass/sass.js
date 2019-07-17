@@ -2,6 +2,9 @@
 
 // https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module/#13163075
 module.exports = function(gulp, plugins) {
+    // [https://github.com/dlmanning/gulp-sass#basic-usage]
+    plugins.sass.compiler = require('node-sass');
+
     let sassTasks = require('./sass.json');
 
     //https://stackoverflow.com/questions/29885220/using-objects-in-for-of-loops/#29885220

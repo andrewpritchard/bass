@@ -1,6 +1,6 @@
 {
   "autoprefixer_default": {
-    "src": "./css/default.css",
+    "src": "./wp-content/themes/Zephyr-child/*.css",
     "options": {
       "env": "",
       "cascade": true,
@@ -11,10 +11,10 @@
       "overrideBrowserslist": ["last 2 versions"],
       "ignoreUnknownVersions": false
     },
-    "dest": "./css"
+    "dest": "./wp-content/themes/Zephyr-child/"
   },
   "autoprefixer_alt": {
-    "src": "./css/default.css",
+    "src": "./wp-content/themes/Zephyr-child/*.css",
     "options": {
       "env": "",
       "cascade": true,
@@ -25,6 +25,6 @@
       "overrideBrowserslist": ["last 2 versions"],
       "ignoreUnknownVersions": false
     },
-    "dest": "./css"
+    "dest": "./wp-content/themes/Zephyr-child/"
   }
 }

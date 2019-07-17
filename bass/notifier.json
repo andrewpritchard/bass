@@ -1,0 +1,14 @@
+{
+  "notifier_default": {
+    "title": "Build",
+    "message": "Done"
+  },
+  "notifier_test": {
+    "title": "Test",
+    "message": "Complete"
+  },
+  "notifier_watch": {
+    "title": "Upload",
+    "message": "Complete"
+  }
+}

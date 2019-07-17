@@ -1,50 +1,47 @@
-// [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode]
+// Helps stop sloppy code [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode]
 'use strict';
 
 const gulp = require('gulp');
-const { series } = require('gulp');
-// [https://github.com/jackfranklin/gulp-load-plugins#usage]
+const { series, watch } = require('gulp');
+// All gulp plugins are attached to this constant [https://github.com/jackfranklin/gulp-load-plugins#usage]
 const plugins = require('gulp-load-plugins')();
-// [https://github.com/dlmanning/gulp-sass#basic-usage]
-plugins.sass.compiler = require('node-sass');
-plugins.notifier = require('node-notifier');
 
-// [https://nodejs.org/api/modules.html#modules_require_id]
+// The code below allows for external tasks in the 'bass' folder that are dynamically added to the gulpfile
 let dependencies = require('./package.json');
-// [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys]
+// Grabs only the 'devDependencies' object & simplifies the array with only the property names [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys]
 dependencies = Object.keys(dependencies.devDependencies);
-
+// Excludes certain plugins that don't have any configuration files
 let noTasks = [
     'gulp',
     'gulp-load-plugins',
-    'node-sass',
-    'node-notifier'
+    'node-sass'
 ];
 const bass = {};
-
-// [https://coderwall.com/p/kvzbpa/don-t-use-array-foreach-use-for-instead]
+allows for more dynamic task additions so the developer rarely needs to open the gulpfile
+// 'For...in' is not as quick as a normal 'for' loop but still faster than 'forEach' [https://coderwall.com/p/kvzbpa/don-t-use-array-foreach-use-for-instead]
 for (const key in dependencies) {
-    // [https://stackoverflow.com/questions/18347033/how-to-shorten-my-conditional-statements/#18347047]
+    // Uses the above 'noTask' array & loops through the dependencies [https://stackoverflow.com/questions/18347033/how-to-shorten-my-conditional-statements/#18347047]
     if(!noTasks.includes(dependencies[key])) {
-        const req = dependencies[key].replace(/gulp-/g, '');
-
+        // Looks for dependencies with the prefix of 'gulp-' or 'node-'
+        const req = dependencies[key].replace(/gulp-|node-/g, '');
+        // Adds external task files to the 'bass' object & passes on the 'gulp' & 'plugins' constants
         bass[req.concat('Tasks')] = require('./bass/' + req + '.js')(gulp, plugins);
     };
 };
 
-exports.default = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, function() {
-    plugins.notifier.notify({
-        title: 'Build',
-        message: 'Done'
-    });
-});
+/*//////////////////////////////////////////////////////////////////////////////
+// gulp Tasks
+//////////////////////////////////////////////////////////////////////////////*/
 
-exports.test = bass.sshTasks.ssh_test;
+// The default task that is ran with gulp
+exports.default = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.notifierTasks.notifier_default);
+
+// Tests the SFTP connection by downloading the 'license.txt' file
+exports.test = series(bass.sshTasks.ssh_test, bass.notifierTasks.notifier_test);
+
+// Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP
 exports.watch = function() {
-    watch('./*.scss', series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, , function() {
-        plugins.notifier.notify({
-            title: 'Upload',
-            message: 'Done'
-        });
-    }));
+    watch('./wp-content/themes/Zephyr-child/scss/**/*.scss', {
+        ignoreInitial: false
+    }, series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, bass.notifierTasks.notifier_watch));
 };

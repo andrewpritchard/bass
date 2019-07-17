@@ -1,20 +1,20 @@
 {
   "csso_default": {
-    "src": "./css/default.css",
+    "src": "./wp-content/themes/Zephyr-child/*.css",
     "options": {
       "restructure": true,
       "debug": false,
       "usage": ""
     },
-    "dest": "./css"
+    "dest": "./wp-content/themes/Zephyr-child/"
   },
   "csso_alt": {
-    "src": "./css/default.css",
+    "src": "./wp-content/themes/Zephyr-child/*.css",
     "options": {
       "restructure": true,
       "debug": false,
       "usage": ""
     },
-    "dest": "./css"
+    "dest": "./wp-content/themes/Zephyr-child/"
   }
 }
