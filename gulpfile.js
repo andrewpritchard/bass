@@ -17,7 +17,6 @@ let noTasks = [
     'node-sass'
 ];
 const bass = {};
-allows for more dynamic task additions so the developer rarely needs to open the gulpfile
 // 'For...in' is not as quick as a normal 'for' loop but still faster than 'forEach' [https://coderwall.com/p/kvzbpa/don-t-use-array-foreach-use-for-instead]
 for (const key in dependencies) {
     // Uses the above 'noTask' array & loops through the dependencies [https://stackoverflow.com/questions/18347033/how-to-shorten-my-conditional-statements/#18347047]
