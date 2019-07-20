@@ -1,7 +1,11 @@
 {
   "name": "bass",
-  "description": "",
+  "description": "A customised gulpfile with external configuration files meant to be easy to change or setup new tasks",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewpritchard/bass"
+  },
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",

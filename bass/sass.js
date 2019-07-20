@@ -19,7 +19,7 @@ module.exports = function(gulp, plugins) {
         module[key] = function(cb) {
             return gulp.src(config.src)
                 .pipe(plugins.sass({
-                    // List of options [https://github.com/saƒss/node-sass#outputstyle]
+                    // List of options [https://github.com/sass/node-sass#outputstyle]
                     outputStyle: config.options.outputStyle,
                     precision: config.options.precision,
                     sourceComments: config.options.sourceComments

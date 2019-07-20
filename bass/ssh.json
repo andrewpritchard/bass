@@ -1,16 +1,18 @@
 {
   "ssh_test": {
+    "//" : "Client options [https://github.com/mscdex/ssh2#client-methods]",
     "connection": {
       "host": "localhost",
       "port": 22,
       "username": "",
+      "password": "",
       "privateKey": "",
-      "privateKeyFile": "",
       "useAgent": false,
       "passphrase": ""
     },
     "command": "read",
     "src": "/opt/git/kingfisherpainting/license.txt",
+    "//" : "// List of options [https://github.com/teambition/gulp-ssh#gulpsshsftpcommand-filepath-options]",
     "options": {
       "filePath": "license.txt",
       "autoExit": true
@@ -18,17 +20,19 @@
     "dest": "./"
   },
   "ssh_default": {
+    "//" : "Client options [https://github.com/mscdex/ssh2#client-methods]",
     "connection": {
       "host": "localhost",
       "port": 22,
       "username": "",
+      "password": "",
       "privateKey": "",
-      "privateKeyFile": "",
       "useAgent": false,
       "passphrase": ""
     },
     "command": "write",
     "src": "./wp-content/themes/Zephyr-child/style.css",
+    "//" : "// List of options [https://github.com/teambition/gulp-ssh#gulpsshsftpcommand-filepath-options]",
     "options": {
       "filePath": "style.css",
       "autoExit": true

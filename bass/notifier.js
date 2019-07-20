@@ -19,8 +19,11 @@ module.exports = function(gulp, plugins) {
         module[key] = function(cb) {
             plugins.notifier.notify({
                     // List of options [https://github.com/mikaelbr/node-notifier#cross-platform-advanced-usage]
-                    title: config.title,
-                    message: config.message
+                    title: config.options.title,
+                    message: config.options.message,
+                    icon: config.options.icon,
+                    sound: config.options.sound,
+                    wait: config.options.wait
                 });
             // Return is necessary to tells gulp it's done
             return cb();

@@ -1,14 +1,32 @@
 {
   "notifier_default": {
-    "title": "Build",
-    "message": "Done"
+    "//" : "List of options [https://github.com/mikaelbr/node-notifier#cross-platform-advanced-usage]",
+    "options": {
+      "title": "Build",
+      "message": "Done",
+      "icon": "",
+      "sound": false,
+      "wait": false
+    }
   },
   "notifier_test": {
-    "title": "Test",
-    "message": "Complete"
+    "//" : "List of options [https://github.com/mikaelbr/node-notifier#cross-platform-advanced-usage]",
+    "options": {
+      "title": "Test",
+      "message": "Complete",
+      "icon": "",
+      "sound": false,
+      "wait": false
+    }
   },
   "notifier_watch": {
-    "title": "Upload",
-    "message": "Complete"
+    "//" : "List of options [https://github.com/mikaelbr/node-notifier#cross-platform-advanced-usage]",
+    "options": {
+      "title": "Upload",
+      "message": "Complete",
+      "icon": "",
+      "sound": false,
+      "wait": false
+    }
   }
 }

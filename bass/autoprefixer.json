@@ -1,6 +1,7 @@
 {
   "autoprefixer_default": {
     "src": "./wp-content/themes/Zephyr-child/*.css",
+    "//" : "List of options [https://github.com/postcss/autoprefixer#options]",
     "options": {
       "env": "",
       "cascade": true,
@@ -15,6 +16,7 @@
   },
   "autoprefixer_alt": {
     "src": "./wp-content/themes/Zephyr-child/*.css",
+    "//" : "List of options [https://github.com/postcss/autoprefixer#options]",
     "options": {
       "env": "",
       "cascade": true,

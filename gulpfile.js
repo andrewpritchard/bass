@@ -32,15 +32,15 @@ for (const key in dependencies) {
 // gulp tasks
 //////////////////////////////////////////////////////////////////////////////*/
 
-// The default task that is ran with gulp
 exports.default = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.notifierTasks.notifier_default);
+exports.default.description = "The default task that is ran when gulp is initiated";
 
-// Tests the SFTP connection by downloading the 'license.txt' file
 exports.test = series(bass.sshTasks.ssh_test, bass.notifierTasks.notifier_test);
+exports.test.description = "Tests the SFTP connection by downloading the 'license.txt' file from the server directory defined in an external JSON array";
 
-// Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP
 exports.watch = function() {
     watch('./wp-content/themes/Zephyr-child/scss/**/*.scss', {
         ignoreInitial: false
     }, series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, bass.notifierTasks.notifier_watch));
 };
+exports.watch.description = "Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP, will override the existing CSS on the server - so use source control to log all changes";

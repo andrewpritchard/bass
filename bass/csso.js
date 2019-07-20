@@ -17,10 +17,12 @@ module.exports = function(gulp, plugins) {
         module[key] = function(cb) {
             return gulp.src(config.src)
                 .pipe(plugins.csso({
-                    // List of options [https://github.com/css/csso#usage-data]
+                    // List of options [https://github.com/css/csso#compressast-options]
                     restructure: config.options.restructure,
-                    debug: config.options.debug,
-                    usage: config.options.usage
+                    forceMediaMerge: config.options.forceMediaMerge,
+                    clone: config.options.clone,
+                    comments: config.options.comments,
+                    debug: config.options.debug
                 }))
                 .pipe(gulp.dest(config.dest));
             // Tells gulp it's done

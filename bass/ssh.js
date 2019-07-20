@@ -17,11 +17,14 @@ module.exports = function(gulp, plugins) {
         // Connection details for the secure server
         const connect = new plugins.ssh({
             sshConfig: {
-                // List of options [https://github.com/mscdex/ssh2#client-methods]
+                // Client options [https://github.com/mscdex/ssh2#client-methods]
                 host: config.connection.host,
                 port: config.connection.port,
                 username: config.connection.username,
-                privateKey: fs.readFileSync(config.connection.privateKey)
+                password: config.connection.password,
+                privateKey: fs.readFileSync(config.connection.privateKey),
+                useAgent: config.connection.useAgent,
+                passphrase: config.connection.passphrase
             },
             ignoreErrors: false
         });
@@ -31,6 +34,7 @@ module.exports = function(gulp, plugins) {
             // gulp syntax is slightly different depending on the command
             if (config.command == 'read') {
                 return connect.sftp(config.command, config.src, {
+                        // List of options [https://github.com/teambition/gulp-ssh#gulpsshsftpcommand-filepath-options]
                         filePath: config.options.filePath,
                         autoExit: config.options.autoExit
                     })
@@ -38,6 +42,7 @@ module.exports = function(gulp, plugins) {
             } else {
                 return gulp.src(config.src)
                     .pipe(connect.sftp(config.command, config.dest, {
+                        // List of options [https://github.com/teambition/gulp-ssh#gulpsshsftpcommand-filepath-options]
                         filePath: config.options.filePath,
                         autoExit: config.options.autoExit
                     }));

@@ -1,19 +1,25 @@
 {
   "csso_default": {
     "src": "./wp-content/themes/Zephyr-child/*.css",
+    "//" : "List of options [https://github.com/css/csso#compressast-options]",
     "options": {
       "restructure": true,
-      "debug": false,
-      "usage": ""
+      "forceMediaMerge": false,
+      "clone": false,
+      "comments": true,
+      "debug": false
     },
     "dest": "./wp-content/themes/Zephyr-child/"
   },
   "csso_alt": {
     "src": "./wp-content/themes/Zephyr-child/*.css",
+    "//" : "List of options [https://github.com/css/csso#compressast-options]",
     "options": {
       "restructure": true,
-      "debug": false,
-      "usage": ""
+      "forceMediaMerge": false,
+      "clone": false,
+      "comments": true,
+      "debug": false
     },
     "dest": "./wp-content/themes/Zephyr-child/"
   }
