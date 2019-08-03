@@ -1,0 +1,33 @@
+{
+  "imagemin_default": {
+    "src": "./wp-content/uploads/min/source/*.{gif,jpg,jpeg,png}",
+    "gifsicle": {
+      "//" : "Plugin options [https://github.com/imagemin/imagemin-gifsicle#options]",
+      "options": {
+        "interlaced": true,
+        "optimizationLevel": 1
+      }
+    },
+    "jpegtran": {
+      "//" : "Plugin options [https://github.com/imagemin/imagemin-jpegtran#options]",
+      "options": {
+        "progressive": true,
+        "arithmetic": false
+      }
+    },
+    "optipng": {
+      "//" : "Plugin options [https://github.com/imagemin/imagemin-gifsicle#options]",
+      "options": {
+        "optimizationLevel": 5,
+        "bitDepthReduction": true,
+        "colorTypeReduction": true,
+        "paletteReduction": true
+      }
+    },
+    "//" : "List of options [https://github.com/imagemin/imagemin-optipng#options]",
+    "options": {
+      "verbose": true
+    },
+    "dest": "./wp-content/uploads/min/"
+  }
+}

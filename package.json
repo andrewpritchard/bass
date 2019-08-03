@@ -1,15 +1,13 @@
 {
   "name": "bass",
-  "description": "A customised gulpfile with external configuration files meant to be easy to change or setup new tasks",
+  "description": "",
   "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/andrewpritchard/bass"
-  },
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
+    "gulp-changed": "^4.0.0",
     "gulp-csso": "^3.0.1",
+    "gulp-imagemin": "^6.0.0",
     "gulp-load-plugins": "^2.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-ssh": "^0.7.0",

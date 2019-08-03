@@ -14,7 +14,9 @@ dependencies = Object.keys(dependencies.devDependencies);
 let noTasks = [
     'gulp',
     'gulp-load-plugins',
-    'node-sass'
+    'node-sass',
+    'gulp-ssh',
+    'gulp-changed'
 ];
 const bass = {};
 // 'For...in' is not as quick as a normal 'for' loop but still faster than 'forEach' [https://coderwall.com/p/kvzbpa/don-t-use-array-foreach-use-for-instead]
@@ -44,3 +46,5 @@ exports.watch = function() {
     }, series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, bass.notifierTasks.notifier_watch));
 };
 exports.watch.description = "Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP, will override the existing CSS on the server - so use source control to log all changes";
+
+exports.image = series(bass.imageminTasks.imagemin_default);
