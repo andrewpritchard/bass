@@ -1,0 +1,24 @@
+{
+  "scaleImages_default": {
+    "src": "./wp-content/uploads/scale/source/*.{gif,jpg,jpeg,png}",
+    "//" : "List of options [https://github.com/derhuerst/gulp-scale-images#usage] & plugin options [http://sharp.pixelplumbing.com/en/stable/api-output/]",
+    "options": {
+      "pngFile": {
+        "maxWidth": 500,
+        "maxHeight": 500,
+        "format": "png",
+        "withoutEnlargement": true,
+        "formatOptions": {
+        }
+      },
+      "jpegFile": {
+        "maxWidth": 700,
+        "format": "jpeg",
+        "withoutEnlargement": true,
+        "formatOptions": {
+        }
+      }
+    },
+    "dest": "./wp-content/uploads/scale/"
+  }
+}

@@ -1,8 +1,9 @@
 {
   "name": "bass",
   "description": "",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "devDependencies": {
+    "flat-map": "^1.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-changed": "^4.0.0",
@@ -10,6 +11,7 @@
     "gulp-imagemin": "^6.0.0",
     "gulp-load-plugins": "^2.0.0",
     "gulp-sass": "^4.0.2",
+    "gulp-scale-images": "^1.2.1",
     "gulp-ssh": "^0.7.0",
     "node-notifier": "^5.4.0",
     "node-sass": "^4.12.0"

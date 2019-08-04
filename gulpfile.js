@@ -16,6 +16,7 @@ let noTasks = [
     'gulp-load-plugins',
     'node-sass',
     'gulp-ssh',
+    'flat-map',
     'gulp-changed'
 ];
 const bass = {};
@@ -25,8 +26,15 @@ for (const key in dependencies) {
     if(!noTasks.includes(dependencies[key])) {
         // Looks for dependencies with the prefix of 'gulp-' or 'node-'
         const req = dependencies[key].replace(/gulp-|node-/g, '');
+        let dependency = [];
+        // Checks for a certain plugin name & renames it to a better namespace
+        if (req == 'scale-images') {
+            dependency = 'scaleImagesTasks';
+        } else {
+            dependency = req.concat('Tasks');
+        }
         // Adds external task files to the 'bass' object & passes on the 'gulp' & 'plugins' constants
-        bass[req.concat('Tasks')] = require('./bass/' + req + '.js')(gulp, plugins);
+        bass[dependency] = require('./bass/' + req + '.js')(gulp, plugins);
     };
 };
 
@@ -47,4 +55,4 @@ exports.watch = function() {
 };
 exports.watch.description = "Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP, will override the existing CSS on the server - so use source control to log all changes";
 
-exports.image = series(bass.imageminTasks.imagemin_default);
+exports.image = series(bass.scaleImagesTasks.scaleImages_default, bass.imageminTasks.imagemin_default);
