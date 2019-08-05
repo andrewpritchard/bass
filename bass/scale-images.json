@@ -1,7 +1,7 @@
 {
   "scaleImages_default": {
     "src": "./wp-content/uploads/scale/source/*.{gif,jpg,jpeg,png}",
-    "//" : "List of options [https://github.com/derhuerst/gulp-scale-images#usage] & plugin options [http://sharp.pixelplumbing.com/en/stable/api-output/]",
+    "//": "List of options [https://github.com/derhuerst/gulp-scale-images#usage] & plugin options [http://sharp.pixelplumbing.com/en/stable/api-output/]",
     "options": {
       "pngFile": {
         "maxWidth": 500,

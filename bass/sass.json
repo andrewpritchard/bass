@@ -1,7 +1,7 @@
 {
   "sass_default": {
     "src": "./wp-content/themes/Zephyr-child/scss/*.scss",
-    "//" : "List of options [https://github.com/sass/node-sass#outputstyle]",
+    "//": "List of options [https://github.com/sass/node-sass#outputstyle]",
     "options": {
       "outputStyle": "nested",
       "precision": 5,
@@ -11,7 +11,7 @@
   },
   "sass_alt": {
     "src": "./wp-content/themes/Zephyr-child/scss/style.scss",
-    "//" : "List of options [https://github.com/sass/node-sass#outputstyle]",
+    "//": "List of options [https://github.com/sass/node-sass#outputstyle]",
     "options": {
       "outputStyle": "nested",
       "precision": 5,

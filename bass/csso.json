@@ -1,7 +1,7 @@
 {
   "csso_default": {
     "src": "./wp-content/themes/Zephyr-child/*.css",
-    "//" : "List of options [https://github.com/css/csso#compressast-options]",
+    "//": "List of options [https://github.com/css/csso#compressast-options]",
     "options": {
       "restructure": true,
       "forceMediaMerge": false,
@@ -13,7 +13,7 @@
   },
   "csso_alt": {
     "src": "./wp-content/themes/Zephyr-child/*.css",
-    "//" : "List of options [https://github.com/css/csso#compressast-options]",
+    "//": "List of options [https://github.com/css/csso#compressast-options]",
     "options": {
       "restructure": true,
       "forceMediaMerge": false,
