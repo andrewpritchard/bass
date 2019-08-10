@@ -38,7 +38,7 @@ module.exports = function(gulp, plugins) {
                     })
                 ], {
                     // List of options [https://github.com/sindresorhus/gulp-imagemin#options]
-                    verbose: false
+                    verbose: config.options.verbose
                 }))
                 .pipe(gulp.dest(config.dest));
             // Tells gulp it's done

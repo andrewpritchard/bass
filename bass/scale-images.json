@@ -1,24 +1,48 @@
 {
   "scaleImages_default": {
-    "src": "./wp-content/uploads/scale/source/*.{gif,jpg,jpeg,png}",
+    "src": "./wp-content/uploads/resize/source/*.{gif,jpg,jpeg,png}",
     "//": "List of options [https://github.com/derhuerst/gulp-scale-images#usage] & plugin options [http://sharp.pixelplumbing.com/en/stable/api-output/]",
     "options": {
-      "pngFile": {
-        "maxWidth": 500,
-        "maxHeight": 500,
-        "format": "png",
-        "withoutEnlargement": true,
-        "formatOptions": {
-        }
-      },
       "jpegFile": {
-        "maxWidth": 700,
+        "maxWidth": 800,
         "format": "jpeg",
         "withoutEnlargement": true,
         "formatOptions": {
+          "quality": 60
         }
       }
     },
-    "dest": "./wp-content/uploads/scale/"
+    "dest": "./wp-content/uploads/resize/"
+  },
+  "scaleImages_slider": {
+    "src": "./wp-content/uploads/resize/slider/source/*.{gif,jpg,jpeg,png}",
+    "//": "List of options [https://github.com/derhuerst/gulp-scale-images#usage] & plugin options [http://sharp.pixelplumbing.com/en/stable/api-output/]",
+    "options": {
+      "desktopImage": {
+        "maxWidth": 1400,
+        "format": "jpeg",
+        "withoutEnlargement": true,
+        "formatOptions": {
+          "quality": 60
+        }
+      },
+      "tabletImage": {
+        "maxWidth": 778,
+        "format": "jpeg",
+        "withoutEnlargement": true,
+        "formatOptions": {
+          "quality": 60
+        }
+      },
+      "mobileImage": {
+        "maxWidth": 480,
+        "format": "jpeg",
+        "withoutEnlargement": true,
+        "formatOptions": {
+          "quality": 60
+        }
+      }
+    },
+    "dest": "./wp-content/uploads/resize/slider/"
   }
 }

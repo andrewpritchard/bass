@@ -37,6 +37,11 @@ for (const key in dependencies) {
         bass[dependency] = require('./bass/' + req + '.js')(gulp, plugins);
     };
 };
+// Small helper function to allow a single task to be referred to by the preferred shortcut & take a single line
+function exports_single(shortcut, task) {
+    exports[shortcut] = task;
+    exports[shortcut].displayName = shortcut;
+}
 
 /*//////////////////////////////////////////////////////////////////////////////
 // gulp tasks
@@ -55,4 +60,8 @@ exports.watch = function() {
 };
 exports.watch.description = "Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP, will override the existing CSS on the server - so use source control to log all changes";
 
-exports.image = series(bass.scaleImagesTasks.scaleImages_default, bass.imageminTasks.imagemin_default);
+exports.resize = series(bass.scaleImagesTasks.scaleImages_default, bass.scaleImagesTasks.scaleImages_slider);
+exports.resize.description = "Looks in the default WordPress uploads directory for the 'resize' folder & if images are found under the child folder, 'source' - the images are all resized based on the task settings"
+
+exports_single('compress', bass.imageminTasks.imagemin_default);
+exports.compress.description = "Looks in the default WordPress uploads directory for the 'compress' folder & if images are found under the child folder, 'source' - the images are all compressed based on the task settings";

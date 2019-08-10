@@ -1,6 +1,6 @@
 {
   "imagemin_default": {
-    "src": "./wp-content/uploads/min/source/*.{gif,jpg,jpeg,png}",
+    "src": "./wp-content/uploads/compress/source/*.{gif,jpg,jpeg,png}",
     "gifsicle": {
       "//": "Plugin options [https://github.com/imagemin/imagemin-gifsicle#options]",
       "options": {
@@ -28,6 +28,6 @@
     "options": {
       "verbose": true
     },
-    "dest": "./wp-content/uploads/min/"
+    "dest": "./wp-content/uploads/compress/"
   }
 }
