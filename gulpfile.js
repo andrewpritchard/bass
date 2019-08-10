@@ -48,20 +48,20 @@ function exports_single(shortcut, task) {
 //////////////////////////////////////////////////////////////////////////////*/
 
 exports.default = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.notifierTasks.notifier_default);
-exports.default.description = "The default task that is ran when gulp is initiated";
+exports.default.description = 'The default task that is ran when gulp is initiated';
 
 exports.test = series(bass.sshTasks.ssh_test, bass.notifierTasks.notifier_test);
-exports.test.description = "Tests the SFTP connection by downloading the 'license.txt' file from the server directory defined in an external JSON array";
+exports.test.description = 'Tests the SFTP connection by downloading the \'license.txt\' file from the server directory defined in an external JSON array';
 
 exports.watch = function() {
     watch('./wp-content/themes/Zephyr-child/scss/**/*.scss', {
         ignoreInitial: false
     }, series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, bass.notifierTasks.notifier_watch));
 };
-exports.watch.description = "Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP, will override the existing CSS on the server - so use source control to log all changes";
+exports.watch.description = 'Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP, will override the existing CSS on the server - so use source control to log all changes';
 
 exports.resize = series(bass.scaleImagesTasks.scaleImages_default, bass.scaleImagesTasks.scaleImages_slider);
-exports.resize.description = "Looks in the default WordPress uploads directory for the 'resize' folder & if images are found under the child folder, 'source' - the images are all resized based on the task settings"
+exports.resize.description = 'Looks in the default WordPress uploads directory for the \'resize\' folder & if images are found under the child folder, \'source\' - the images are all resized based on the task settings';
 
 exports_single('compress', bass.imageminTasks.imagemin_default);
-exports.compress.description = "Looks in the default WordPress uploads directory for the 'compress' folder & if images are found under the child folder, 'source' - the images are all compressed based on the task settings";
+exports.compress.description = 'Looks in the default WordPress uploads directory for the \'compress\' folder & if images are found under the child folder, \'source\' - the images are all compressed based on the task settings';
