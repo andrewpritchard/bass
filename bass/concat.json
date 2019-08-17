@@ -1,0 +1,14 @@
+{
+  "concat_default": {
+    "src": [
+      "./wp-content/themes/Zephyr-child/js/vendors/*.js",
+      "./wp-content/themes/Zephyr-child/js/*.js"
+    ],
+    "concat": "scripts.js",
+    "//": "List of options [https://github.com/gulp-community/gulp-concat#usage]",
+    "options": {
+      "newLine": "\r\n"
+    },
+    "dest": "./wp-content/themes/Zephyr-child/"
+  }
+}

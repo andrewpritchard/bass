@@ -1,0 +1,23 @@
+{
+  "uglify_default": {
+    "src": "./wp-content/themes/Zephyr-child/*.js",
+    "//": "List of options [https://github.com/mishoo/UglifyJS2#minify-options]",
+    "options": {
+      "warnings": false,
+      "//": "Parse options [https://github.com/mishoo/UglifyJS2#parse-options]",
+      "parse": {
+      },
+      "//": "Compress options [https://github.com/mishoo/UglifyJS2#compress-options]",
+      "compress": {
+      },
+      "//": "Mangle structure if configuring [https://github.com/mishoo/UglifyJS2#minify-options-structure], list of options [https://github.com/mishoo/UglifyJS2#mangle-options] & properties subobject options [https://github.com/mishoo/UglifyJS2#mangle-properties-options]",
+      "mangle": true,
+      "//": "Ouput options [https://github.com/mishoo/UglifyJS2#output-options]",
+      "output": null,
+      "toplevel": false,
+      "ie8": false,
+      "keep_fnames": false
+    },
+    "dest": "./wp-content/themes/Zephyr-child/"
+  }
+}

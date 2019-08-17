@@ -17,7 +17,8 @@ let noTasks = [
     'node-sass',
     'gulp-ssh',
     'flat-map',
-    'gulp-changed'
+    'gulp-changed',
+    'readable-stream'
 ];
 const bass = {};
 // 'For...in' is not as quick as a normal 'for' loop but still faster than 'forEach' [https://coderwall.com/p/kvzbpa/don-t-use-array-foreach-use-for-instead]
