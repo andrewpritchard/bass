@@ -30,7 +30,6 @@ module.exports = function(gulp, plugins) {
                     // Shows the whole array without including the keys [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values]
                     cb(null, Object.values(sizes));
                 }))
-                // List of options [https://github.com/sass/node-sass#outputstyle]
                 .pipe(plugins.scaleImages())
                 .pipe(gulp.dest(config.dest));
             // Tells gulp it's done
