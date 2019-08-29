@@ -1,0 +1,84 @@
+{
+  "browserSync_default": {
+    "//": "List of options [https://www.browsersync.io/docs/options]",
+    "options": {
+      "ui": {
+      },
+      "files": false,
+      "watchEvents": ["change"],
+      "watch": false,
+      "ignore": [
+      ],
+      "single": false,
+      "watchOptions": {
+      },
+      "server": false,
+      "proxy": "",
+      "port": 3000,
+      "middleware": false,
+      "serveStatic": [
+      ],
+      "serveStaticOptions": {
+      },
+      "//": [
+        "To make a self-signed certificate copy-paste the following commands: 'openssl genrsa -out ~/.localhost-ssl/localhost.key 2048'",
+        "Create a certificate signing request: 'openssl req -new -key ~/.localhost-ssl/localhost.key -out ~/.localhost-ssl/localhost.csr'",
+        "Sign the certificate signing request: 'openssl x509 -req -days 365 -in ~/.localhost-ssl/localhost.csr -signkey ~/.localhost-ssl/localhost.key -out ~/.localhost-ssl/localhost.crt'",
+        "Import the self-signed certificate into Keychain Access & set every option to 'Always Trust'"
+      ],
+      "https": {
+        "//": "Whether to refer to the macOS home directory when accessing the paths below",
+        "useHomeDirectory": true,
+        "key": "/.localhost-ssl/localhost.key",
+        "cert": "/.localhost-ssl/localhost.crt"
+      },
+      "httpModule": "http",
+      "cwd": "",
+      "callbacks": {
+      },
+      "ghostMode": {
+      },
+      "logLevel": "info",
+      "logPrefix": "Browsersync",
+      "logConnections": false,
+      "logFileChanges": true,
+      "logSnippet": true,
+      "snippetOptions": {
+      },
+      "rewriteRules": false,
+      "tunnel": null,
+      "online": "",
+      "open": true,
+      "browser": "",
+      "cors": false,
+      "xip": false,
+      "reloadOnRestart": false,
+      "notify": true,
+      "scrollProportionally": true,
+      "scrollThrottle": 0,
+      "scrollRestoreTechnique": "window.name",
+      "scrollElements": [
+      ],
+      "scrollElementMapping": [
+      ],
+      "reloadDelay": 0,
+      "reloadDebounce": 0,
+      "reloadThrottle": 0,
+      "plugins": [
+      ],
+      "injectChanges": true,
+      "startPath": null,
+      "minify": true,
+      "host": null,
+      "localOnly": false,
+      "codeSync": true,
+      "timestamps": true,
+      "scriptPath": "",
+      "socket": {
+        "domain": "localhost:3000"
+      },
+      "script": {
+      }
+    }
+  }
+}
