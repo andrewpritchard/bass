@@ -69,3 +69,6 @@ exports.resize.description = 'Looks in the default WordPress uploads directory f
 
 exports_single('compress', bass.imageminTasks.imagemin_default);
 exports.compress.description = 'Looks in the default WordPress uploads directory for the \'compress\' folder & if images are found under the child folder, \'source\' - the images are all compressed based on the task settings';
+
+exports.scripts = series(bass.concatTasks.concat_default, bass.uglifyTasks.uglify_default, bass.notifierTasks.notifier_default);
+exports.scripts.description = 'Combines JavaScript into a single file & compresses the contents';
