@@ -2,7 +2,7 @@
 'use strict';
 
 const gulp = require('gulp');
-const { series, watch } = require('gulp');
+const { parallel, watch, series } = require('gulp');
 // All gulp plugins are attached to this constant [https://github.com/jackfranklin/gulp-load-plugins#usage]
 const plugins = require('gulp-load-plugins')();
 
@@ -49,14 +49,23 @@ function exports_single(shortcut, task) {
 // gulp tasks
 //////////////////////////////////////////////////////////////////////////////*/
 
-exports.default = function(cb) {
-    bass.browserSyncTasks.browserSync_default(cb);
-
-    watch('./wp-content/themes/Zephyr-child/scss/**/*.scss', {
-        ignoreInitial: false
-    }, series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, bass.browserSyncTasks.browserSync_default.reload, bass.notifierTasks.notifier_watch));
-};
-exports.default.description = 'Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP & refreshes the browser if the outputted script is installed on the site. Will override the existing CSS on the server - so use source control to log all changes';
+exports.default = parallel(
+    // Starts listening
+    bass.browserSyncTasks.browserSync_default,
+    // SCSS
+    function() {
+        watch('./wp-content/themes/Zephyr-child/scss/**/*.scss', {
+            ignoreInitial: false
+        }, series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, bass.browserSyncTasks.browserSync_default.reload, bass.notifierTasks.notifier_watch));
+    },
+    // JavaScript
+    function() {
+        watch('./wp-content/themes/Zephyr-child/js/**/*.js', {
+            ignoreInitial: false
+        }, series(bass.concatTasks.concat_default, bass.uglifyTasks.uglify_default, bass.notifierTasks.notifier_default, bass.sshTasks.ssh_alt, bass.browserSyncTasks.browserSync_default.reload, bass.notifierTasks.notifier_watch));
+    }
+);
+exports.default.description = 'Watches in parallel for any changes to any SCSS or JS file, then builds & uploads the resulting file(s) onto a server via SFTP & refreshes the browser (if the outputted script is installed on the site). Will override the existing CSS/ JS on the server - so use source control to log all changes';
 
 exports.styles = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.notifierTasks.notifier_default);
 exports.styles.description = 'Compiles all the SCSS files into a single CSS, adds browser vendor prefixes & optimises the contents';
