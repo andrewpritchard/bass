@@ -34,7 +34,7 @@
         "key": "/.localhost-ssl/localhost.key",
         "cert": "/.localhost-ssl/localhost.crt"
       },
-      "httpModule": "http",
+      "httpModule": "https",
       "cwd": "",
       "callbacks": {
       },
