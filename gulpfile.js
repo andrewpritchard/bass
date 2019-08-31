@@ -81,3 +81,6 @@ exports.compress.description = 'Looks in the default WordPress uploads directory
 
 exports.scripts = series(bass.concatTasks.concat_default, bass.uglifyTasks.uglify_default, bass.notifierTasks.notifier_default);
 exports.scripts.description = 'Combines JavaScript into a single file & compresses the contents';
+
+exports_single('testing', bass.browserSyncTasks.browserSync_alt);
+exports.testing.description = 'Opens a server that operates on the network, copy the \'External\' address & open on any desired device - interactions will be mirrored to all connected devices';
