@@ -67,8 +67,8 @@ exports.default = parallel(
 );
 exports.default.description = 'Watches in parallel for any changes to any SCSS or JS file, then builds & uploads the resulting file(s) onto a server via SFTP & refreshes the browser (if the outputted script is installed on the site). Will override the existing CSS/ JS on the server - so use source control to log all changes';
 
-exports.styles = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.notifierTasks.notifier_default);
-exports.styles.description = 'Compiles all the SCSS files into a single CSS, adds browser vendor prefixes & optimises the contents';
+exports.style = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.notifierTasks.notifier_default);
+exports.style.description = 'Compiles all the SCSS files into a single CSS, adds browser vendor prefixes & optimises the contents';
 
 exports.test = series(bass.sshTasks.ssh_test, bass.notifierTasks.notifier_test);
 exports.test.description = 'Tests the SFTP connection by downloading the \'license.txt\' file from the server directory defined in an external JSON array';
