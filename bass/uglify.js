@@ -14,7 +14,7 @@ module.exports = function(gulp, plugins) {
     function null_check(option) {
         if(option == null) {
             return {};
-        }
+        };
     };
     // Loops the plugin task objects, allows a developer to quickly add new tasks from the config file [https://stackoverflow.com/questions/29885220/using-objects-in-for-of-loops/#29885220]
     for (const key in uglifyTasks) {

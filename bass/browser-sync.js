@@ -16,8 +16,8 @@ module.exports = function(gulp, plugins) {
             return plugins.homeDir + path;
         } else {
             return path;
-        }
-    }
+        };
+    };
     // Loads a file from the this folder with an array of configs
     let browserSyncTasks = require('./browser-sync.json');
     // Loops the plugin task objects, allows a developer to quickly add new tasks from the config file [https://stackoverflow.com/questions/29885220/using-objects-in-for-of-loops/#29885220]
