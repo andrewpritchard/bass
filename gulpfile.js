@@ -15,7 +15,6 @@ let noTasks = [
     'gulp',
     'gulp-load-plugins',
     'node-sass',
-    'gulp-ssh',
     'flat-map',
     'gulp-changed',
     'readable-stream'

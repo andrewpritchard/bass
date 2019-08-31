@@ -8,6 +8,14 @@
 module.exports = function(gulp, plugins) {
     // Brings in the ability to read key files
     const fs = require('fs');
+    // Helper to determine if a key file is ready to be read & used
+    function read_file(path) {
+        if(path != null) {
+            return fs.readFileSync(path);
+        } else {
+            return path;
+        };
+    };
     // Loads a file from the this folder with an array of configs
     let sshTasks = require('./ssh.json');
     // Loops the plugin task objects, allows a developer to quickly add new tasks from the config file [https://stackoverflow.com/questions/29885220/using-objects-in-for-of-loops/#29885220]
@@ -22,7 +30,7 @@ module.exports = function(gulp, plugins) {
                 port: config.connection.port,
                 username: config.connection.username,
                 password: config.connection.password,
-                privateKey: fs.readFileSync(config.connection.privateKey),
+                privateKey: read_file(config.connection.privateKey),
                 useAgent: config.connection.useAgent,
                 passphrase: config.connection.passphrase
             },
