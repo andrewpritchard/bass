@@ -49,20 +49,20 @@ function exports_single(shortcut, task) {
 // gulp tasks
 //////////////////////////////////////////////////////////////////////////////*/
 
-exports.default = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.notifierTasks.notifier_default);
-exports.default.description = 'The default task that is ran when gulp is initiated';
-
-exports.test = series(bass.sshTasks.ssh_test, bass.notifierTasks.notifier_test);
-exports.test.description = 'Tests the SFTP connection by downloading the \'license.txt\' file from the server directory defined in an external JSON array';
-
-exports.watch = function(cb) {
+exports.default = function(cb) {
     bass.browserSyncTasks.browserSync_default(cb);
 
     watch('./wp-content/themes/Zephyr-child/scss/**/*.scss', {
         ignoreInitial: false
     }, series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, bass.browserSyncTasks.browserSync_default.reload, bass.notifierTasks.notifier_watch));
 };
-exports.watch.description = 'Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP & refreshes the browser if the outputted script is installed on the site. Will override the existing CSS on the server - so use source control to log all changes';
+exports.default.description = 'Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP & refreshes the browser if the outputted script is installed on the site. Will override the existing CSS on the server - so use source control to log all changes';
+
+exports.styles = series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.notifierTasks.notifier_default);
+exports.styles.description = 'Compiles all the SCSS files into a single CSS, adds browser vendor prefixes & optimises the contents';
+
+exports.test = series(bass.sshTasks.ssh_test, bass.notifierTasks.notifier_test);
+exports.test.description = 'Tests the SFTP connection by downloading the \'license.txt\' file from the server directory defined in an external JSON array';
 
 exports.resize = series(bass.scaleImagesTasks.scaleImages_default, bass.scaleImagesTasks.scaleImages_slider);
 exports.resize.description = 'Looks in the default WordPress uploads directory for the \'resize\' folder & if images are found under the child folder, \'source\' - the images are all resized based on the task settings';
