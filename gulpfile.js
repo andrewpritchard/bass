@@ -28,12 +28,14 @@ for (const key in dependencies) {
         // Looks for dependencies with the prefix of 'gulp-' or 'node-'
         const req = dependencies[key].replace(/gulp-|node-/g, '');
         let dependency = [];
-        // Checks for a certain plugin name & renames it to a better namespace
+        // Checks for a certain plugin names & renames them to a better namespace
         if (req == 'scale-images') {
             dependency = 'scaleImagesTasks';
+        } else if (req == 'browser-sync') {
+            dependency = 'browserSyncTasks';
         } else {
             dependency = req.concat('Tasks');
-        }
+        };
         // Adds external task files to the 'bass' object & passes on the 'gulp' & 'plugins' constants
         bass[dependency] = require('./bass/' + req + '.js')(gulp, plugins);
     };
@@ -42,7 +44,7 @@ for (const key in dependencies) {
 function exports_single(shortcut, task) {
     exports[shortcut] = task;
     exports[shortcut].displayName = shortcut;
-}
+};
 
 /*//////////////////////////////////////////////////////////////////////////////
 // gulp tasks
@@ -54,12 +56,14 @@ exports.default.description = 'The default task that is ran when gulp is initiat
 exports.test = series(bass.sshTasks.ssh_test, bass.notifierTasks.notifier_test);
 exports.test.description = 'Tests the SFTP connection by downloading the \'license.txt\' file from the server directory defined in an external JSON array';
 
-exports.watch = function() {
+exports.watch = function(cb) {
+    bass.browserSyncTasks.browserSync_default(cb);
+
     watch('./wp-content/themes/Zephyr-child/scss/**/*.scss', {
         ignoreInitial: false
-    }, series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, bass.notifierTasks.notifier_watch));
+    }, series(bass.sassTasks.sass_default, bass.autoprefixerTasks.autoprefixer_default, bass.cssoTasks.csso_default, bass.sshTasks.ssh_default, bass.browserSyncTasks.browserSync_default.reload, bass.notifierTasks.notifier_watch));
 };
-exports.watch.description = 'Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP, will override the existing CSS on the server - so use source control to log all changes';
+exports.watch.description = 'Watches for any changes to any SCSS file, builds the CSS & uploads the resulting file onto a server via SFTP & refreshes the browser if the outputted script is installed on the site. Will override the existing CSS on the server - so use source control to log all changes';
 
 exports.resize = series(bass.scaleImagesTasks.scaleImages_default, bass.scaleImagesTasks.scaleImages_slider);
 exports.resize.description = 'Looks in the default WordPress uploads directory for the \'resize\' folder & if images are found under the child folder, \'source\' - the images are all resized based on the task settings';
