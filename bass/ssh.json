@@ -38,5 +38,25 @@
       "autoExit": true
     },
     "dest": "/opt/git/kingfisherpainting/wp-content/themes/Zephyr-child/style.css"
+  },
+  "ssh_alt": {
+    "//": "Client options [https://github.com/mscdex/ssh2#client-methods]",
+    "connection": {
+      "host": "localhost",
+      "port": 22,
+      "username": "",
+      "password": "",
+      "privateKey": null,
+      "useAgent": false,
+      "passphrase": ""
+    },
+    "command": "write",
+    "src": "./wp-content/themes/Zephyr-child/scripts.js",
+    "//": "// List of options [https://github.com/teambition/gulp-ssh#gulpsshsftpcommand-filepath-options]",
+    "options": {
+      "filePath": "scripts.js",
+      "autoExit": true
+    },
+    "dest": "/opt/git/kingfisherpainting/wp-content/themes/Zephyr-child/scripts.js"
   }
 }
