@@ -4,6 +4,8 @@
     "connection": {
       "host": "localhost",
       "port": 22,
+      "//": "Whether to refer to the macOS home directory when accessing the username or key below",
+      "useHomeDirectory": true,
       "username": "",
       "password": "",
       "privateKey": null,
@@ -24,6 +26,8 @@
     "connection": {
       "host": "localhost",
       "port": 22,
+      "//": "Whether to refer to the macOS home directory when accessing the username or key below",
+      "useHomeDirectory": true,
       "username": "",
       "password": "",
       "privateKey": null,
@@ -44,6 +48,8 @@
     "connection": {
       "host": "localhost",
       "port": 22,
+      "//": "Whether to refer to the macOS home directory when accessing the username or key below",
+      "useHomeDirectory": true,
       "username": "",
       "password": "",
       "privateKey": null,
