@@ -26,7 +26,7 @@
         "Generate a private key: 'openssl genrsa -out ~/.localhost-ssl/localhost.key 2048'",
         "Create a certificate to sign, leave all fields empty but for 'Common Name' use 'localhost': 'openssl req -new -key ~/.localhost-ssl/localhost.key -out ~/.localhost-ssl/localhost.csr'",
         "The certificate signing request: 'openssl x509 -req -days 365 -in ~/.localhost-ssl/localhost.csr -signkey ~/.localhost-ssl/localhost.key -out ~/.localhost-ssl/localhost.crt'",
-        "Import the self-signed certificate into Keychain Access & set every option to 'Always Trust'"
+        "Import the self-signed certificate, 'localhost.crt' under the 'login' keychain destination in Keychain Access & set every option to 'Always Trust'"
       ],
       "https": {
         "//": "Whether to refer to the macOS home directory when accessing the paths below",
