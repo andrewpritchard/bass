@@ -24,7 +24,7 @@
         "To make a self-signed certificate copy-paste the following commands:",
         "Prepare the certificate's directory: 'mkdir -p ~/.localhost-ssl'",
         "Generate a private key: 'openssl genrsa -out ~/.localhost-ssl/localhost.key 2048'",
-        "Create a certificate to sign: 'openssl req -new -key ~/.localhost-ssl/localhost.key -out ~/.localhost-ssl/localhost.csr'",
+        "Create a certificate to sign, leave all fields empty but for 'Common Name' use 'localhost': 'openssl req -new -key ~/.localhost-ssl/localhost.key -out ~/.localhost-ssl/localhost.csr'",
         "The certificate signing request: 'openssl x509 -req -days 365 -in ~/.localhost-ssl/localhost.csr -signkey ~/.localhost-ssl/localhost.key -out ~/.localhost-ssl/localhost.crt'",
         "Import the self-signed certificate into Keychain Access & set every option to 'Always Trust'"
       ],
