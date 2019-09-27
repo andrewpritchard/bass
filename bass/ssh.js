@@ -6,28 +6,47 @@
 
 // Pattern for getting arguments from the gulpfile into an external file [https://stackoverflow.com/questions/13151693/passing-arguments-to-require-when-loading-module/#13163075]
 module.exports = function(gulp, plugins) {
-    // Brings in the ability to read key files
-    plugins.fs = require('fs');
     // Prints out the home directory
     plugins.homeDir = require('os').homedir();
+    // Brings in the ability to read key files
+    plugins.fs = require('fs');
+    // Helper function to check for an external file with the username
+    function user_test(path, home) {
+        // Checks for JSON
+        const is_json = path.includes('.json');
+        if(is_json) {
+            if(home) {
+                // Loads the JSON file & retrieves the value associated with the key
+                return require(plugins.homeDir + path)['username'];
+            } else {
+                // Relative reference means the 'bass' folder needs to be removed to get to the gulpfile root
+                return require(__dirname.replace('/bass', '') + path)['username'];
+            };
+        } else {
+            return path;
+        }
+    };
     // Helper which tests for different key configurations & outputs the result
-    function key_test(path, home, key) {
+    function key_test(path, home) {
         // Recommended to use 'let' instead of 'var' to avoid scope issues [https://medium.com/podiihq/javascript-variables-should-you-use-let-var-or-const-394f7645c88f#ec5a]
-        let construct_path = path;
-        // Stops errors if the value returns falsy [https://developer.mozilla.org/en-US/docs/Glossary/Falsy]
-        if(path === false) {
+        let construct_path = __dirname.replace('/bass', '') + path;
+        // Stops errors if using the default value stated in the docs
+        if(path != null) {
             // Checks for JSON
             const is_json = path.includes('.json');
             // Is the location under home?
-            if(home && path === false) {
+            if(home) {
                 construct_path = plugins.homeDir + path;
                 if(is_json) {
                     // Loads the JSON file & retrieves the value associated with the key
-                    construct_path = plugins.homeDir + require(construct_path)[key];
+                    construct_path = plugins.homeDir + require(construct_path)['privateKey'];
                 };
-            } else if(is_json) {
-                // Relative reference means the 'bass' folder needs to be removed to get to the gulpfile root
-                construct_path = '.' + require(__dirname.replace('/bass', '') + construct_path)[key];
+            } else {
+                construct_path = __dirname.replace('/bass', '') + path;
+                if(is_json) {
+                    // Relative reference means the 'bass' folder needs to be removed to get to the gulpfile root
+                    construct_path = '.' + require(__dirname.replace('/bass', '') + path)['privateKey'];
+                };
             };
             // Reads the key file
             return plugins.fs.readFileSync(construct_path);
@@ -47,9 +66,9 @@ module.exports = function(gulp, plugins) {
                 // Client options [https://github.com/mscdex/ssh2#client-methods]
                 host: config.connection.host,
                 port: config.connection.port,
-                username: key_test(config.connection.username, config.connection.useHomeDirectory, 'username'),
+                username: user_test(config.connection.username, config.connection.useHomeDirectory),
                 password: config.connection.password,
-                privateKey: key_test(config.connection.privateKey, config.connection.useHomeDirectory, 'privateKey'),
+                privateKey: key_test(config.connection.privateKey, config.connection.useHomeDirectory),
                 useAgent: config.connection.useAgent,
                 passphrase: config.connection.passphrase
             },

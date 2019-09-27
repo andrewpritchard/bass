@@ -8,6 +8,7 @@
       "useHomeDirectory": true,
       "username": "",
       "password": "",
+      "//": "When using an external key there is no need to put the '.' in front of the leading slash",
       "privateKey": null,
       "useAgent": false,
       "passphrase": ""
@@ -30,6 +31,7 @@
       "useHomeDirectory": true,
       "username": "",
       "password": "",
+      "//": "When using an external key there is no need to put the '.' in front of the leading slash",
       "privateKey": null,
       "useAgent": false,
       "passphrase": ""
@@ -52,6 +54,7 @@
       "useHomeDirectory": true,
       "username": "",
       "password": "",
+      "//": "When using an external key there is no need to put the '.' in front of the leading slash",
       "privateKey": null,
       "useAgent": false,
       "passphrase": ""
